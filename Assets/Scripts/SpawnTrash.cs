@@ -9,13 +9,15 @@ public class SpawnTrash : MonoBehaviour
     // Start is called before the first frame update
     // spawn random object from the trash folder in the scene at random places
     public GameObject[] trash;
+    public GameObject cube;
 
-    void Update()
+    void OnTriggerEnter(Collider other)
     {
-        if (Input.GetKeyDown("space"))
+        //if (collision.gameObject.name == "Cube1" && collision.gameObject.name == "Cube2")
         {
-            Debug.Log("space key was pressed");
+            cube.GetComponent<Renderer>().material.color = Color.blue;
             SpawnTrashObjects();
+
         }
     }
     void SpawnTrashObjects()
