@@ -10,21 +10,22 @@ public class SpawnTrash : MonoBehaviour
 
     void Start()
     {
+        //After 5 seconds spawn trash objects
+        Invoke("SpawnTrashObjects", 5f);     
+        
+    }
+    void SpawnTrashObjects()
+    {
         // for the length of the trash array
         for (int i = 0; i < trash.Length; i++)
         {
             // get a random object from the trash folder
             GameObject randomTrash = trash[Random.Range(0, trash.Length)];
             // get a random position in the scene
-            Vector3 randomPosition = new Vector3(Random.Range(-10, 10), 0, Random.Range(-10, 10));
+            Vector3 randomPosition = new Vector3(Random.Range(-10, 10), 0, Random.Range(-1, 1));
             // instantiate the random object at the random position
             Instantiate(randomTrash, randomPosition, Quaternion.identity);
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
