@@ -9,8 +9,10 @@ public class SpawnTrash : MonoBehaviour
     // Start is called before the first frame update
     // spawn hiden random object from the trash folder in the scene at random places
     public GameObject[] trash;
-    public GameObject cube;
-
+    public GameObject cameraCube;
+    public GameObject cubeIndex;
+    public GameObject cubePouce;
+    public GameObject cameraColider;
 
     void Start()
     {
@@ -30,11 +32,16 @@ public class SpawnTrash : MonoBehaviour
             float randomScaleValue = Random.Range(10f, 150f);
             Vector3 randomScale = new Vector3(randomScaleValue, randomScaleValue, randomScaleValue);
             // set layer of the object and all its children to 6
-            randomTrash.layer = 6;
+            randomTrash.layer = 6;       
             // instantiate the random object at the random position with the random scale and set active to false
             GameObject trashObject = Instantiate(randomTrash, randomPosition, Quaternion.identity);
             trashObject.transform.localScale = randomScale;
             trashObject.SetActive(true);
+            // make it a rigidebody with gravity sett to false
+            trashObject.AddComponent<Rigidbody>().useGravity = false; 
+            //add a colider and make it a trigger
+            trashObject.AddComponent<BoxCollider>().isTrigger = true;
+            
         }
 
     }
@@ -42,34 +49,31 @@ public class SpawnTrash : MonoBehaviour
     // When collide the object becomes visible
     void OnTriggerEnter(Collider other)
     {
-        //if (collision.gameObject.name == "Cube1" && collision.gameObject.name == "Cube2")
-        {
-            cube.GetComponent<Renderer>().material.color = Color.blue;
-            ShowTrash();
+        // //if (collision.gameObject.name == "Cube1" && collision.gameObject.name == "Cube2")
+        // {
+        //     cameraCube.GetComponent<Renderer>().material.color = Color.blue;
+        //     ShowTrash();
 
-        }
-    }
-    void ShowTrash()
-    {
-        // Find the camera named CameraCamera
-        Camera CameraCamera = GameObject.Find("CameraCamera").GetComponent<Camera>();
-        // Loop through all trash objects
-        foreach (GameObject trashObject in trash)
-        {
-            // Create a ray that goes from the camera's position to the trash object
-            Ray ray = new Ray(CameraCamera.transform.position, trashObject.transform.position - CameraCamera.transform.position);
+        // }
 
-            // Check if the ray hits anything
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
+        // Check if the collider is the cameraCollider
+        if (other.gameObject == cameraColider)
+        {
+            // Loop through all trash objects
+            foreach (GameObject trashObject in trash)
             {
-                // If the ray hits the trash object, make it visible by changing its layer to 0
-                if (hit.collider.gameObject == trashObject)
+                // Check if the cameraCollider is colliding with the trash object
+                if (trashObject.GetComponent<Collider>().bounds.Intersects(other.bounds))
                 {
+                    // If the cameraCollider is colliding with the trash object change its layer to 0
                     trashObject.layer = 0;
                 }
-                
             }
         }
+        // void ShowTrash()
+        // {
+        //     // Detect colision between object called "Colider" and the trashObject
+
+        // }
     }
 }

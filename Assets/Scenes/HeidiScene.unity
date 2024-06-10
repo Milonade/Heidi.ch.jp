@@ -938,7 +938,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -1074,7 +1074,10 @@ MonoBehaviour:
   - {fileID: 919132149155446097, guid: d9d7cda862f0b6048884b9aa46739af3, type: 3}
   - {fileID: 919132149155446097, guid: cc125a1c7dc18de4ea9b756c2140a166, type: 3}
   - {fileID: 919132149155446097, guid: 7166038560a0c6b4e951698a08cf1ea6, type: 3}
-  cube: {fileID: 0}
+  cameraCube: {fileID: 695904056}
+  cubeIndex: {fileID: 462679530}
+  cubePouce: {fileID: 1592581734}
+  cameraColider: {fileID: 1162658293}
 --- !u!4 &1561988591 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7229935335855861632, guid: 5eccbf4be2c00e94689ee8062e4e7276, type: 3}
