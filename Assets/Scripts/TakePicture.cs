@@ -5,23 +5,22 @@ using UnityEngine;
 public class TakePicture : MonoBehaviour
 {
     public GameObject cube;
-    public GameObject sphere;
+    public ColiderTest coliderTest;
+
+
+    void Start()
+    {
+        // Find the ColliderTest component on the GameObject
+        coliderTest = FindObjectOfType<ColiderTest>();
+    }
 
     // i want to change the color of the cube when two other cubes collides
     void OnTriggerEnter(Collider other)
     {
-        //if (collision.gameObject.name == "Cube1" && collision.gameObject.name == "Cube2")
         {
-            cube.GetComponent<Renderer>().material.color = Color.blue;
-            Invoke("SpawnSphere", 1.5f);
+            coliderTest.OnTriggerEnter(other);
 
         }
-    }
-
-    void SpawnSphere()
-    {
-        sphere.SetActive(true);
-
     }
 
 }

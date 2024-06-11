@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,19 +7,25 @@ public class ColiderTest : MonoBehaviour
 {
     public GameObject cube;
 
-   void Start()
+
+    public void OnTriggerEnter(Collider other)
+
     {
-        IsVisibleFrom(cube.GetComponent<Renderer>(), Camera.main);
+        cube.GetComponent<Renderer>().material.color = Color.blue;
+
+        if (other.gameObject.layer == 6)
+        {
+            other.gameObject.layer = 0;
+
+        }
+
     }
 
 
-    // Update is called once per frame
-    void IsVisibleFrom(Renderer cube, Camera camera)
-    {
-        Plane[] planes = GeometryUtility.CalculateFrustumPlanes(camera);
-        GeometryUtility.TestPlanesAABB(planes, cube.bounds);
-    }
 
 }
+
+
+
 
 
