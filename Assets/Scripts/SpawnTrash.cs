@@ -40,7 +40,7 @@ public class SpawnTrash : MonoBehaviour
             // make it a rigidebody with gravity sett to false
             trashObject.AddComponent<Rigidbody>().useGravity = false; 
             //add a colider and make it a trigger
-            trashObject.AddComponent<BoxCollider>().isTrigger = true;
+            trashObject.AddComponent<BoxCollider>().isTrigger = false;
             
         }
 
@@ -48,7 +48,14 @@ public class SpawnTrash : MonoBehaviour
 
     // When collide the object becomes visible
     void OnTriggerEnter(Collider other)
+
     {
+        // if the camera collider collides with the trash object change the layer the trahs to 0
+        if (other.gameObject.layer == 6)
+        {
+            other.gameObject.layer = 0;
+        }
+
         // //if (collision.gameObject.name == "Cube1" && collision.gameObject.name == "Cube2")
         // {
         //     cameraCube.GetComponent<Renderer>().material.color = Color.blue;
@@ -57,23 +64,12 @@ public class SpawnTrash : MonoBehaviour
         // }
 
         // Check if the collider is the cameraCollider
-        if (other.gameObject == cameraColider)
-        {
-            // Loop through all trash objects
-            foreach (GameObject trashObject in trash)
-            {
-                // Check if the cameraCollider is colliding with the trash object
-                if (trashObject.GetComponent<Collider>().bounds.Intersects(other.bounds))
-                {
-                    // If the cameraCollider is colliding with the trash object change its layer to 0
-                    trashObject.layer = 0;
-                }
-            }
-        }
+       
         // void ShowTrash()
         // {
         //     // Detect colision between object called "Colider" and the trashObject
 
         // }
+        //trashObject.layer = 0;
     }
 }
