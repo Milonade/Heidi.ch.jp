@@ -5,6 +5,9 @@ using UnityEngine;
 public class MoveTrash : MonoBehaviour
 {
     // Update is called once per frame
+    public float speed = 0.01f; // Add a public speed variable to control the speed
+    private Vector3 direction= new Vector3(1, 0, 1); // Add a public direction variable to control the direction
+
     void Update()
     {
         MoveTownObjects();
@@ -18,8 +21,9 @@ public class MoveTrash : MonoBehaviour
         // for each object in the scene
         foreach (GameObject trashObject in trashObjects)
         {
+           direction =  new Vector3(Random.Range(-1, 1), Random.Range(-1, 1), Random.Range(-1, 1)); // Add a random direction
             // make the object drift away
-            trashObject.transform.position += new Vector3(0, 0, 0.01f);
+             trashObject.transform.position += direction * speed; // Use the direction and speed to move the object
         }
     }
 
@@ -30,7 +34,8 @@ public class MoveTrash : MonoBehaviour
         //if (other.gameObject.CompareTag("World"))
         //{
             // make the object bounce back
-            other.gameObject.transform.position -= new Vector3(0, 0, 0.1f);
+           // speed = Random.Range(0.01f, 0.1f);
+            direction = -direction;
       //  }
     }
 
