@@ -21,6 +21,8 @@ sysinfo.txt
 /[Rr]ecordings/
 
 /Assets/AssetStoreTools*
+/Assets/Elements/village/
+
 
 # Probuilder
 Assets/ProBuilder Data/

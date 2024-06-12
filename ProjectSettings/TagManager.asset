@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - CameraCamera
+  - Trash
+  - Town
+  - World
   layers:
   - Default
   - TransparentFX
