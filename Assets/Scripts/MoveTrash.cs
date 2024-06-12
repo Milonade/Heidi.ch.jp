@@ -27,11 +27,11 @@ public class MoveTrash : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         // if the object collides with the world sphere
-        if (other.gameObject.CompareTag("World"))
-        {
-            // invert the direction of the object
-           other.gameObject.transform.position -= new Vector3(0,0,0.1f);
-        }
+        //if (other.gameObject.CompareTag("World"))
+        //{
+            // make the object bounce back
+            other.gameObject.transform.position -= new Vector3(0, 0, 0.1f);
+      //  }
     }
 
 }
