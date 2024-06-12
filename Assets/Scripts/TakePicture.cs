@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class TakePicture : MonoBehaviour
 {
-    public GameObject cube;
+    //public GameObject cube;
     public ColiderTest coliderTest;
-
 
     void Start()
     {
@@ -17,10 +16,31 @@ public class TakePicture : MonoBehaviour
     // i want to change the color of the cube when two other cubes collides
     void OnTriggerEnter(Collider other)
     {
-        {
-            coliderTest.OnTriggerEnter(other);
 
+        if (coliderTest != null)
+        {
+            coliderTest.GetComponent<Collider>().enabled = true;
+            //cube.GetComponent<Renderer>().material.color = Color.blue;
+            coliderTest.ChangeLayer(other);
+
+            StartCoroutine(DisableColliderAfterDelay(coliderTest.gameObject, 2f));
         }
     }
 
+    IEnumerator DisableColliderAfterDelay(GameObject target, float delay)
+    {
+        // Wait for the specified delay
+        yield return new WaitForSeconds(delay);
+
+        // Check if the target still exists and disable its collider
+        if (target != null)
+        {
+            Collider collider = target.GetComponent<Collider>();
+            if (collider != null)
+            {
+                collider.enabled = false;
+            }
+        }
+
+    }
 }
