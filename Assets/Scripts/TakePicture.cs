@@ -20,10 +20,9 @@ public class TakePicture : MonoBehaviour
         if (coliderTest != null)
         {
             coliderTest.GetComponent<Collider>().enabled = true;
-            //cube.GetComponent<Renderer>().material.color = Color.blue;
             coliderTest.ChangeLayer(other);
 
-            StartCoroutine(DisableColliderAfterDelay(coliderTest.gameObject, 2f));
+            StartCoroutine(DisableColliderAfterDelay(coliderTest.gameObject, 0.3f));
         }
     }
 

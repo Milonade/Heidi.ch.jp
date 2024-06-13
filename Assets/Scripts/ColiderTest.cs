@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class ColiderTest : MonoBehaviour
 {
-    public GameObject cube;
-
     void Start()
     {
         Debug.Log("Collider is disabled");
@@ -21,6 +19,17 @@ public class ColiderTest : MonoBehaviour
             other.gameObject.layer = 0;
         }
     }
+    //add a raycaster in the middle of the collider
+    private void Update()
+    {
+        Ray ray = new Ray(transform.position, transform.forward);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 1))
+        {
+            Debug.Log("Raycast hit: " + hit.collider.gameObject.name);
+        }
+    }
+
     void OnTriggerEnter(Collider other)
     {
         ChangeLayer(other);
