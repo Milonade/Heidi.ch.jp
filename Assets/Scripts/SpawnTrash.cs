@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,14 +10,11 @@ public class SpawnTrash : MonoBehaviour
     // Start is called before the first frame update
     // spawn hiden random object from the trash folder in the scene at random places
     public GameObject[] trash;
-    public GameObject cameraCube;
-    public GameObject cubeIndex;
-    public GameObject cubePouce;
-    public GameObject cameraColider;
+
 
     void Start()
     {
-        Invoke("SpawnTrashObjects", 2f);
+        Invoke("SpawnTrashObjects", 1f);
     }
 
     void SpawnTrashObjects()
@@ -27,49 +25,26 @@ public class SpawnTrash : MonoBehaviour
             // get a random object from the trash folder
             GameObject randomTrash = trash[Random.Range(0, trash.Length)];
             // get a random position in the scene
-            Vector3 randomPosition = new Vector3(Random.Range(-10, 10), Random.Range(1, 3), Random.Range(-10, 10));
+            Vector3 randomPosition = new Vector3(Random.Range(-3, 250), Random.Range(5, 15), Random.Range(-5, 240));
             // get a random proportionate scale for the object
-            float randomScaleValue = Random.Range(10f, 150f);
+            float randomScaleValue = Random.Range(5f, 30f);
             Vector3 randomScale = new Vector3(randomScaleValue, randomScaleValue, randomScaleValue);
             // set layer of the object and all its children to 6
             randomTrash.layer = 6;       
             // instantiate the random object at the random position with the random scale and set active to false
             GameObject trashObject = Instantiate(randomTrash, randomPosition, Quaternion.identity);
             trashObject.transform.localScale = randomScale;
-            trashObject.SetActive(true);
             // make it a rigidebody with gravity sett to false
             trashObject.AddComponent<Rigidbody>().useGravity = false; 
             //add a colider and make it a trigger
             trashObject.AddComponent<BoxCollider>().isTrigger = false;
+            // add is kinematic true
+            trashObject.GetComponent<Rigidbody>().isKinematic = true;
+
             
         }
 
     }
 
-    // When collide the object becomes visible
-    void OnTriggerEnter(Collider other)
-
-    {
-        // if the camera collider collides with the trash object change the layer the trahs to 0
-        if (other.gameObject.layer == 6)
-        {
-            other.gameObject.layer = 0;
-        }
-
-        // //if (collision.gameObject.name == "Cube1" && collision.gameObject.name == "Cube2")
-        // {
-        //     cameraCube.GetComponent<Renderer>().material.color = Color.blue;
-        //     ShowTrash();
-
-        // }
-
-        // Check if the collider is the cameraCollider
-       
-        // void ShowTrash()
-        // {
-        //     // Detect colision between object called "Colider" and the trashObject
-
-        // }
-        //trashObject.layer = 0;
-    }
+    
 }
