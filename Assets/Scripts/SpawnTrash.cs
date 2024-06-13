@@ -25,9 +25,9 @@ public class SpawnTrash : MonoBehaviour
             // get a random object from the trash folder
             GameObject randomTrash = trash[Random.Range(0, trash.Length)];
             // get a random position in the scene
-            Vector3 randomPosition = new Vector3(Random.Range(-3, 250), Random.Range(5, 15), Random.Range(-5, 240));
+            Vector3 randomPosition = new Vector3(Random.Range(-3, 250), Random.Range(9, 15), Random.Range(-5, 240));
             // get a random proportionate scale for the object
-            float randomScaleValue = Random.Range(5f, 30f);
+            float randomScaleValue = Random.Range(4f, 20f);
             Vector3 randomScale = new Vector3(randomScaleValue, randomScaleValue, randomScaleValue);
             // set layer of the object and all its children to 6
             randomTrash.layer = 6;  
@@ -43,7 +43,7 @@ public class SpawnTrash : MonoBehaviour
             // add is kinematic true
             trashObject.GetComponent<Rigidbody>().isKinematic = true;
             // add script float to the object
-            trashObject.AddComponent<Float>();
+          //  trashObject.AddComponent<Float>();
            
 
             

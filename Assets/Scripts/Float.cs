@@ -18,7 +18,7 @@ public class Float : MonoBehaviour
         // if Town object changes layer to 6, then call the DeactivateGravity function
         if (gameObject.layer == 0 && gameObject.tag == "Trash")
         {
-           Invoke("DeactivateGravity", 2f);
+           Invoke("DeactivateGravity", 5f);
         }
     }
     // deeactivate the gravity on the object with tag "Town"
@@ -31,9 +31,14 @@ public class Float : MonoBehaviour
             if (trashObject.layer == 0)
             {
               trashObject.GetComponent<Rigidbody>().useGravity = false;
-            trashObject.GetComponent<Rigidbody>().isKinematic = false;
+             trashObject.GetComponent<Rigidbody>().isKinematic = false;
+             // add coliider
+              
             }
-            
+            // else {
+            //     // change material of trashObject to blue
+            //     trashObject.GetComponent<Renderer>().material.color = Color.blue;
+            // }
         }
     }
 }

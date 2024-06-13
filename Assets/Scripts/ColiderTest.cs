@@ -17,7 +17,6 @@ public class ColiderTest : MonoBehaviour
         if (other.gameObject.layer == 6)
         {
             other.gameObject.layer = 0;
-            other.GetComponent<Rigidbody>().useGravity = false;
         }
     }
     //add a raycaster in the middle of the collider
