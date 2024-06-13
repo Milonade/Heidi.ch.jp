@@ -30,7 +30,9 @@ public class SpawnTrash : MonoBehaviour
             float randomScaleValue = Random.Range(5f, 30f);
             Vector3 randomScale = new Vector3(randomScaleValue, randomScaleValue, randomScaleValue);
             // set layer of the object and all its children to 6
-            randomTrash.layer = 6;       
+            randomTrash.layer = 6;  
+            // set tag of the object to "Trash"
+            randomTrash.tag = "Trash";     
             // instantiate the random object at the random position with the random scale and set active to false
             GameObject trashObject = Instantiate(randomTrash, randomPosition, Quaternion.identity);
             trashObject.transform.localScale = randomScale;
@@ -40,6 +42,9 @@ public class SpawnTrash : MonoBehaviour
             trashObject.AddComponent<BoxCollider>().isTrigger = false;
             // add is kinematic true
             trashObject.GetComponent<Rigidbody>().isKinematic = true;
+            // add script float to the object
+            trashObject.AddComponent<Float>();
+           
 
             
         }

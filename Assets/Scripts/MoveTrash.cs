@@ -16,7 +16,7 @@ public class MoveTrash : MonoBehaviour
     public void MoveTownObjects()
     {
         // get all the objects in the scene
-        GameObject[] trashObjects = GameObject.FindGameObjectsWithTag("Town");
+        GameObject[] trashObjects = GameObject.FindGameObjectsWithTag("Trash");
         
         // for each object in the scene
         foreach (GameObject trashObject in trashObjects)
