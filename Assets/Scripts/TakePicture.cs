@@ -21,10 +21,11 @@ public class TakePicture : MonoBehaviour
         {
             coliderTest.GetComponent<Collider>().enabled = true;
             coliderTest.ChangeLayer(other);
+            StartCoroutine(DisableColliderAfterDelay(coliderTest.gameObject, 0.3f));           
 
-            StartCoroutine(DisableColliderAfterDelay(coliderTest.gameObject, 0.3f));
         }
     }
+
 
     IEnumerator DisableColliderAfterDelay(GameObject target, float delay)
     {

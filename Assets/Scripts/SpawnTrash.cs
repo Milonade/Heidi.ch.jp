@@ -25,7 +25,7 @@ public class SpawnTrash : MonoBehaviour
             // get a random object from the trash folder
             GameObject randomTrash = trash[Random.Range(0, trash.Length)];
             // get a random position in the scene
-            Vector3 randomPosition = new Vector3(Random.Range(-3, 250), Random.Range(9, 15), Random.Range(-5, 240));
+            Vector3 randomPosition = new Vector3(Random.Range(32, 200), Random.Range(9, 15), Random.Range(40, 210));
             // get a random proportionate scale for the object
             float randomScaleValue = Random.Range(4f, 20f);
             Vector3 randomScale = new Vector3(randomScaleValue, randomScaleValue, randomScaleValue);
@@ -40,9 +40,7 @@ public class SpawnTrash : MonoBehaviour
             trashObject.AddComponent<Rigidbody>().useGravity = false; 
             //add a colider and make it a trigger
             trashObject.AddComponent<BoxCollider>().isTrigger = false;
-            // add is kinematic true
-            trashObject.GetComponent<Rigidbody>().isKinematic = true;
-            // add script float to the object
+           // add script float to the object
           //  trashObject.AddComponent<Float>();
            
 

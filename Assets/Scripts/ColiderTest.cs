@@ -5,11 +5,13 @@ using UnityEngine;
 
 public class ColiderTest : MonoBehaviour
 {
-    void Start()
+    public FloatTown floatTown;
+    public void Start()
     {
         Debug.Log("Collider is disabled");
         Collider collider = GetComponent<Collider>();
         collider.enabled = false;
+        //GameObject[] townObjects = GameObject.FindGameObjectsWithTag("Town");
     }
 
     public void ChangeLayer(Collider other)
@@ -17,22 +19,20 @@ public class ColiderTest : MonoBehaviour
         if (other.gameObject.layer == 6)
         {
             other.gameObject.layer = 0;
+            // add gravity to the object
         }
-    }
-    //add a raycaster in the middle of the collider
-    private void Update()
-    {
-        Ray ray = new Ray(transform.position, transform.forward);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 1))
-        {
-            Debug.Log("Raycast hit: " + hit.collider.gameObject.name);
-        }
-    }
 
+    }
+    
     void OnTriggerEnter(Collider other)
     {
         ChangeLayer(other);
+        //if the object layer is 0, change the gravity to true
+        if (other.gameObject.layer == 0)
+        {
+            other.GetComponent<Rigidbody>().useGravity = true;
+        }
+        floatTown.Start();
     }
 }
 
